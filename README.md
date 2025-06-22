@@ -79,7 +79,6 @@ go run main.go
 - `GET /api/v1/quizzes` - Get all active quizzes
 - `GET /api/v1/quizzes/:id` - Get quiz details
 - `DELETE /api/v1/quizzes/:id` - Delete a quiz
-- `GET /api/v1/quizzes/:id/stats` - Get quiz statistics
 
 ### Quiz Participation
 - `POST /api/v1/quizzes/join` - Join a quiz
@@ -89,9 +88,6 @@ go run main.go
 ### Quiz Control
 - `POST /api/v1/quizzes/:id/start` - Start a quiz
 - `POST /api/v1/quizzes/:id/end` - End a quiz
-
-### User Management
-- `GET /api/v1/users/:id` - Get user information
 
 ### Health & Monitoring
 - `GET /api/v1/health` - Health check endpoint
