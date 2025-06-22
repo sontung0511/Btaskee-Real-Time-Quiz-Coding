@@ -203,28 +203,28 @@ func (h *HTTPHandler) EndQuiz(c *gin.Context) {
   })
 }
 
-// GetUser retrieves user information
-func (h *HTTPHandler) GetUser(c *gin.Context) {
-  userID := c.Param("id")
-  if userID == "" {
-    c.JSON(http.StatusBadRequest, gin.H{
-      "error": "User ID is required",
-    })
-    return
-  }
-
-  user, err := h.quizService.RedisService.GetUser(userID)
-  if err != nil {
-    c.JSON(http.StatusNotFound, gin.H{
-      "error": "User not found: " + err.Error(),
-    })
-    return
-  }
-
-  c.JSON(http.StatusOK, gin.H{
-    "user": user,
-  })
-}
+//// GetUser retrieves user information
+//func (h *HTTPHandler) GetUser(c *gin.Context) {
+//  userID := c.Param("id")
+//  if userID == "" {
+//    c.JSON(http.StatusBadRequest, gin.H{
+//      "error": "User ID is required",
+//    })
+//    return
+//  }
+//
+//  user, err := h.quizService.RedisService.GetUser(userID)
+//  if err != nil {
+//    c.JSON(http.StatusNotFound, gin.H{
+//      "error": "User not found: " + err.Error(),
+//    })
+//    return
+//  }
+//
+//  c.JSON(http.StatusOK, gin.H{
+//    "user": user,
+//  })
+//}
 
 // HealthCheck provides health check endpoint
 func (h *HTTPHandler) HealthCheck(c *gin.Context) {
@@ -292,68 +292,5 @@ func (h *HTTPHandler) DeleteQuiz(c *gin.Context) {
 
   c.JSON(http.StatusOK, gin.H{
     "message": "Quiz deleted successfully",
-  })
-}
-
-// GetQuizStats returns statistics for a quiz
-func (h *HTTPHandler) GetQuizStats(c *gin.Context) {
-  quizID := c.Param("id")
-  if quizID == "" {
-    c.JSON(http.StatusBadRequest, gin.H{
-      "error": "Quiz ID is required",
-    })
-    return
-  }
-
-  quiz, err := h.quizService.GetQuiz(quizID)
-  if err != nil {
-    c.JSON(http.StatusNotFound, gin.H{
-      "error": "Quiz not found: " + err.Error(),
-    })
-    return
-  }
-
-  // Calculate statistics
-  totalParticipants := len(quiz.Participants)
-  totalQuestions := len(quiz.Questions)
-
-  var totalAnswers int
-  var correctAnswers int
-  var totalScore int
-
-  for _, user := range quiz.Participants {
-    totalAnswers += len(user.Answers)
-    for _, answer := range user.Answers {
-      if answer.Correct {
-        correctAnswers++
-      }
-    }
-    totalScore += user.Score
-  }
-
-  accuracy := 0.0
-  if totalAnswers > 0 {
-    accuracy = float64(correctAnswers) / float64(totalAnswers) * 100
-  }
-
-  avgScore := 0.0
-  if totalParticipants > 0 {
-    avgScore = float64(totalScore) / float64(totalParticipants)
-  }
-
-  c.JSON(http.StatusOK, gin.H{
-    "quiz_id":            quizID,
-    "title":              quiz.Title,
-    "status":             quiz.Status,
-    "total_participants": totalParticipants,
-    "total_questions":    totalQuestions,
-    "total_answers":      totalAnswers,
-    "correct_answers":    correctAnswers,
-    "accuracy_percent":   accuracy,
-    "total_score":        totalScore,
-    "average_score":      avgScore,
-    "created_at":         quiz.CreatedAt,
-    "started_at":         quiz.StartedAt,
-    "ended_at":           quiz.EndedAt,
   })
 }

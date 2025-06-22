@@ -1,31 +1,13 @@
 {
 	"info": {
-		"_postman_id": "btaskee-quiz-api",
+		"_postman_id": "7185b7c5-6234-4d32-aba7-f68b3e95f758",
 		"name": "Btaskee Real-Time Quiz API",
 		"description": "Complete API collection for Btaskee Real-Time Quiz application with Redis integration",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18895882",
+		"_collection_link": "https://cloudy-capsule-176470.postman.co/workspace/Team-Workspace~5b473291-3b6a-413c-8cbc-6b1084868441/collection/18895882-7185b7c5-6234-4d32-aba7-f68b3e95f758?action=share&source=collection_link&creator=18895882"
 	},
 	"item": [
-		{
-			"name": "Health Check",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base_url}}/api/v1/health",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"health"
-					]
-				},
-				"description": "Check if the server is healthy and Redis connection status"
-			},
-			"response": []
-		},
 		{
 			"name": "Quiz Management",
 			"item": [
@@ -96,28 +78,6 @@
 							]
 						},
 						"description": "Get detailed information about a specific quiz"
-					},
-					"response": []
-				},
-				{
-					"name": "Get Quiz Statistics",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/api/v1/quizzes/{{quiz_id}}/stats",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"quizzes",
-								"{{quiz_id}}",
-								"stats"
-							]
-						},
-						"description": "Get comprehensive statistics for a quiz"
 					},
 					"response": []
 				},
@@ -288,47 +248,22 @@
 			"description": "Quiz control operations"
 		},
 		{
-			"name": "User Management",
-			"item": [
-				{
-					"name": "Get User",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/api/v1/users/{{user_id}}",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"{{user_id}}"
-							]
-						},
-						"description": "Get user information and answers"
-					},
-					"response": []
-				}
-			],
-			"description": "User management operations"
-		},
-		{
-			"name": "WebSocket Test",
+			"name": "Health Check",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/ws",
+					"raw": "{{base_url}}/api/v1/health",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"ws"
+						"api",
+						"v1",
+						"health"
 					]
 				},
-				"description": "WebSocket endpoint for real-time communication (test in browser or WebSocket client)"
+				"description": "Check if the server is healthy and Redis connection status"
 			},
 			"response": []
 		}
@@ -362,14 +297,12 @@
 		{
 			"key": "quiz_id",
 			"value": "abc123-def456",
-			"type": "string",
-			"description": "Quiz ID from Create Quiz response"
+			"type": "string"
 		},
 		{
 			"key": "user_id",
 			"value": "user123",
-			"type": "string",
-			"description": "User ID from Join Quiz response"
+			"type": "string"
 		}
 	]
-} 
+}
